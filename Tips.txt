@@ -1,5 +1,0 @@
-🎯 Next time in a sliding window problem, just ask yourself:
-👉 "Am I minimizing or maximizing?"
-
-Minimizing? Shrink as soon as the condition is valid.
-Maximizing? Shrink only when the condition is violated.
