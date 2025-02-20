@@ -64,7 +64,9 @@ mongoose.connect("mongodb://127.0.0.1:27017/employeesDB")
     .then(() => console.log("Connected to MongoDB"))
     .catch(err => console.error("MongoDB Connection Error:", err));
 
+let idx = 1;
 const employeeSchema = new mongoose.Schema({
+    ID: Number,
     name: String,
     salary: Number,
     role: String,
@@ -77,7 +79,7 @@ const server = new WebSocket.Server({ port: 8080 });
 
 server.on('connection', (ws) => {
     console.log("Client connected!");
-    ws.send("Connected");
+    // ws.send("Connected");
 
     ws.on('message', async (message) => {
         console.log("Received:", message.toString());
@@ -90,15 +92,18 @@ server.on('connection', (ws) => {
             const department = parts[4];
             const experience = parseInt(parts[5]);
 
-            const newEmployee = new Employee({ name, salary, role, department, experience });
+            const len = await Employee.countDocuments();
+            // console.log("len: ", len);
+            const newEmployee = new Employee({ ID: len + 1, name, salary, role, department, experience });
             await newEmployee.save();
-            ws.send("Employee inserted successfully.");
+            ws.send(`ID: ${newEmployee.ID}`);
+            // idx++;
 
         } else if (parts[0] === "RETRIEVE") {
-            const employees = await Employee.find();
+            const employees = await Employee.find({}, { _id: 0 });
 
             const response = employees.map(emp =>
-                `ID: ${emp._id}, Name: ${emp.name}, Salary: ${emp.salary}, Role: ${emp.role}, Department: ${emp.department}, Experience: ${emp.experience} years`
+                `ID: ${emp.ID}, Name: ${emp.name}, Salary: ${emp.salary}, Role: ${emp.role}, Department: ${emp.department}, Experience: ${emp.experience} years`
             ).join("\n");
             ws.send(response);
 
@@ -107,9 +112,9 @@ server.on('connection', (ws) => {
             const employees = await Employee.find({ department });
 
             const response = employees.map(emp =>
-                `ID: ${emp._id}, Name: ${emp.name}, Salary: ${emp.salary}, Role: ${emp.role}, Department: ${emp.department}, Experience: ${emp.experience} years`
+                `ID: ${emp.ID}, Name: ${emp.name}, Salary: ${emp.salary}, Role: ${emp.role}, Department: ${emp.department}, Experience: ${emp.experience} years`
             ).join("\n");
-            
+
             ws.send(response);
         } else {
             ws.send("Invalid command.");

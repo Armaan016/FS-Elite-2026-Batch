@@ -59,8 +59,8 @@ server.on('connection', (ws) => {
     console.log("Client connected!");
 
     ws.on('message', (message) => {
-        console.log("Received:", message);
-        const parts = message.trim().split(" ");
+        console.log("Received:", message.toString());
+        const parts = message.toString().trim().split(" ");
 
         if (parts[0] === "INSERT" && parts.length === 3) {
             const name = parts[1];
