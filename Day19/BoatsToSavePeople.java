@@ -64,21 +64,17 @@ public class BoatsToSavePeople {
         int l = 0, r = people.length - 1;
 
         int boats = 0;
-        while (l < r) {
+        while (l <= r) {
             int curr = people[l] + people[r];
             if (curr <= limit) {
                 l++;
                 r--;
-                boats++;
-            }
-            if (curr > limit) {
-                boats++;
+            } else {
                 r--;
             }
-        }
 
-        if (l == r)
             boats++;
+        }
 
         return boats;
     }

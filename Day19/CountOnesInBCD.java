@@ -41,6 +41,7 @@ import java.util.*;
 public class CountOnesInBCD {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+
         int d = sc.nextInt();
 
         int[] res = countOnes(d);
@@ -53,19 +54,9 @@ public class CountOnesInBCD {
         int[] res = new int[d + 1];
 
         for (int i = 1; i <= d; i++) {
-            res[i] = countBCD(i);
+            res[i] = Integer.bitCount(i);
         }
+
         return res;
-    }
-
-    private static int countBCD(int n) {
-        int count = 0;
-        while (n > 0) {
-            int r = n % 10;
-            count += Integer.bitCount(r);
-            n /= 10;
-        }
-
-        return count;
     }
 }
