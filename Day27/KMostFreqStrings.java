@@ -50,71 +50,49 @@ package Day27;
 // - P is in the range [1, The number of unique dish names in orders].
 
 import java.util.*;
+
 public class KMostFreqStrings {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-
         String[] words = sc.nextLine().split(",");
         int k = sc.nextInt();
+        sc.close();
 
         System.out.println(findKWords(words, k));
-
-        sc.close();
     }
 
     private static List<String> findKWords(String[] words, int k) {
-        Trie trie = new Trie(k);
+        Trie trie = new Trie();
 
         for (String word : words) {
             trie.insert(word);
         }
 
-        List<String> res = new ArrayList<>();
+        List<String> sortedWords = trie.getSortedWords();
 
-        while (!trie.pq.isEmpty()) {
-            res.add(trie.pq.poll().s);
-        }
-
-        Collections.reverse(res);
-        return res;
+        return sortedWords.subList(0, k);
     }
 }
 
 class Node {
     Node[] children;
     int count;
-    String s;
+    String word; 
 
     Node() {
         children = new Node[26];
         count = 0;
+        word = null;
     }
-
-    public String toString() {
-        return "s: " + s + ", count:" + count;
-    }
-
-    // public int compareTo(Node n2) {
-    // if(this.count != n2.count) return this.count - n2.count;
-    // return this.s.compareTo(n2.s);
-    // }
 }
 
 class Trie {
-    Node root;
-    int k;
-    PriorityQueue<Node> pq;
-    Map<String, Node> map;
+    private Node root;
+    private Map<String, Integer> freqMap; 
 
-    Trie(int k) {
+    Trie() {
         root = new Node();
-        this.k = k;
-        pq = new PriorityQueue<>((a, b) -> {
-            if (a.count == b.count)
-                return a.s.compareTo(b.s);
-            return a.count - b.count;
-        });
-        map = new HashMap<>();
+        freqMap = new HashMap<>();
     }
 
     public void insert(String word) {
@@ -125,36 +103,22 @@ class Trie {
             if (node.children[idx] == null) {
                 node.children[idx] = new Node();
             }
-
             node = node.children[idx];
         }
 
-        if (node.s == null)
-            node.s = word;
-        if (map.containsKey(word))
-            pq.remove(map.get(word));
-
+        node.word = word;
         node.count++;
-        map.put(word, node);
-        pq.offer(node);
-
-        if (pq.size() > k)
-            pq.poll();
-
-        // System.out.println("word inserted: " + word + " pq: " + pq + " node.count: "
-        // + node.count);
+        freqMap.put(word, freqMap.getOrDefault(word, 0) + 1);
     }
 
-    // public boolean search(String word) {
-    // Node node = root;
+    public List<String> getSortedWords() {
+        List<String> words = new ArrayList<>(freqMap.keySet());
 
-    // for(char c : word.toCharArray()) {
-    // int idx = c - 'a';
-    // if(node.children[idx] == null) return false;
+        words.sort((a, b) -> {
+            int freqCompare = freqMap.get(b) - freqMap.get(a);
+            return freqCompare == 0 ? a.compareTo(b) : freqCompare;
+        });
 
-    // node = node.children[idx];
-    // }
-
-    // return node.isEnd == true;
-    // }
+        return words;
+    }
 }

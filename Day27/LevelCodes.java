@@ -53,25 +53,43 @@ import java.util.*;
 public class LevelCodes {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+
         String[] words = sc.nextLine().split(" ");
+
         System.out.print(findLongestValid(words));
+
         sc.close();
     }
 
     private static String findLongestValid(String[] words) {
-        Arrays.sort(words); 
         Trie trie = new Trie();
-
-        String longest = "";
         for (String word : words) {
-            if (trie.insert(word)) { 
-                if (word.length() > longest.length()) {
-                    longest = word;
-                }
-            }
+            trie.insert(word);
         }
 
-        return longest;
+        List<String> res = new ArrayList<>();
+        for (String word : words) {
+            boolean flag = true;
+            for (int i = 1; i < word.length(); i++) {
+                String substr = word.substring(0, i);
+                // System.out.println(substr + " for word: " + word);
+                if (!trie.search(substr)) {
+                    flag = false;
+                    break;
+                }
+            }
+
+            if (flag)
+                res.add(word);
+        }
+
+        Collections.sort(res);
+        Collections.sort(res, (a, b) -> b.length() - a.length());
+        // System.out.println(res);
+
+        if (res.size() == 0)
+            return "";
+        return res.get(0);
     }
 }
 
@@ -87,32 +105,39 @@ class Node {
 
 class Trie {
     Node root;
-    Set<String> validPrefixes; 
 
     Trie() {
         root = new Node();
-        validPrefixes = new HashSet<>();
     }
 
-    public boolean insert(String word) {
+    public void insert(String word) {
         Node node = root;
-        for (char c : word.toCharArray()) {
+
+        for (int i = 0; i < word.length(); i++) {
+            char c = word.charAt(i);
             int idx = c - 'a';
+
             if (node.children[idx] == null) {
                 node.children[idx] = new Node();
             }
+
             node = node.children[idx];
         }
 
         node.isEnd = true;
+    }
 
-        for (int i = 1; i < word.length(); i++) {
-            if (!validPrefixes.contains(word.substring(0, i))) {
+    public boolean search(String word) {
+        Node node = root;
+
+        for (char c : word.toCharArray()) {
+            int idx = c - 'a';
+
+            if (node.children[idx] == null)
                 return false;
-            }
+            node = node.children[idx];
         }
 
-        validPrefixes.add(word); 
-        return true;
+        return node.isEnd == true;
     }
 }
