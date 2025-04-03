@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import pymongo
 
-client = pymongo.MongoClient("mongodb://10.11.8.212:27017/")
+client = pymongo.MongoClient("mongodb://<IPV4_address>:27017/") # Update mongod.conf with your IPV4 address
 db = client["bookstore"]
 collection = db["books"]
 
