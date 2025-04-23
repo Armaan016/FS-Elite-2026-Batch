@@ -1,0 +1,1 @@
+<extensionManifest><groupId>com.example.nifi</groupId><artifactId>nifi-custom-employee-processor</artifactId><version>1.0.6</version><systemApiVersion>1.24.0</systemApiVersion><buildInfo></buildInfo><extensions></extensions></extensionManifest>
