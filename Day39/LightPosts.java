@@ -40,7 +40,7 @@ package Day39;
 // ------------
 // 1st post is with Azure, 2nd post is with Emerald,
 // 3rd post is with Crimson.
-// Minimum cost: 2 + 5 + 3 = 10.
+// Minimum cost: 2 + 5 + 3 = 10. 
 
 import java.util.*;
 

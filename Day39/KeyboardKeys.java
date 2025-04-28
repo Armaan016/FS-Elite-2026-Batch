@@ -105,7 +105,7 @@ public class KeyboardKeys {
         if (n <= 6)
             return n;
 
-        if (mp.containsKey(n))
+        if (mp.containsKey(n)) 
             return mp.get(n);
 
         int res = 0;

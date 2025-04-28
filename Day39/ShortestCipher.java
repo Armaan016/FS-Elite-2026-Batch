@@ -56,7 +56,7 @@ public class ShortestCipher {
 
         System.out.println(getCipher(words));
         
-        sc.close();
+        sc.close(); 
     }
 
     private static int getCipher(String[] words) {
