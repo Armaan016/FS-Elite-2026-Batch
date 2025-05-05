@@ -1,3 +1,5 @@
+package Day37;
+
 // You are given a crystal with an energy level n. Your goal is to discover all the 
 // different ways this crystal could have been created by combining smaller shards.
 

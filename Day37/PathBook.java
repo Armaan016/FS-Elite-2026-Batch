@@ -1,3 +1,5 @@
+package Day37;
+
 /*
  * In a forgotten realm, explorers often find ancient treasure maps written as
  * long strings of mysterious characters with no spaces. Luckily, they also
