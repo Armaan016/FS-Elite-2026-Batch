@@ -1,3 +1,5 @@
+package Day35;
+
 // Captain Raynor is on a mission to decode an alien transmission.
 // The transmission contains a single long string S, and it is believed to be
 // made up of multiple unique signal chunks, sent one after another with no
