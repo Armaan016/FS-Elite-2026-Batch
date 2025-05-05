@@ -1,3 +1,5 @@
+package Day28;
+
 // Imagine you're the chief engineer aboard a futuristic spaceship. The ship is 
 // powered by N series of fuel cells arranged in a row, where each fuel cell holds
 // a specific amount of energy measured in megajoules. Your job is to manage these 
