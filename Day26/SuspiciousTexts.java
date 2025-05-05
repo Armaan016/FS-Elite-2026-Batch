@@ -1,3 +1,5 @@
+package Day26;
+
 // Imagine you're a digital security analyst reviewing a suspicious email. The email’s 
 // content is a continuous string of characters, and you have a list of keywords 
 // commonly used in phishing scams. Your mission is to scan the email text and flag 

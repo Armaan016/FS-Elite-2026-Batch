@@ -1,3 +1,5 @@
+package Day26;
+
 // Imagine you're an adventurer with a mystical treasure map. This map is a grid of 
 // ancient runes, where each cell holds a single character. Legend has a 
 // powerful incantation—represented as a string—is hidden within these runes. 
