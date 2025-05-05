@@ -1,3 +1,5 @@
+package Day30;
+
 // ABabylonian working on numbers, got a task to do.
 // The task is, given two integers S, and X,
 // and S is the sum of (N pow X), where N > 0,
