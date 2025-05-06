@@ -36,6 +36,47 @@ printjson() : JS library function to display the JSON Object data.
 	
 */
 
-printjson(
+printjson(db.medicines.aggregate([
+  {
+    $lookup: {
+      from: 'prescriptions',
+      let: { medId: '$medicineId' },
+      pipeline: [
+        {
+          $unwind: '$medicines'
+        },
+        {
+          $match: {
+            $expr:
+            {
+              $eq: ['$medicines.medicineId', '$$medId']
+            }
+          }
+        }
+      ],
+      as: 'PrescDeets'
+    }
+  },
+  {
+    $addFields: {
+      usageCount: { '$size': '$PrescDeets' }
+    }
+  },
+  {
+    $project: {
+      _id: 0,
+      medicineId: 1,
+      name: 1,
+      stockLevel: 1,
+      usageCount: 1,
 
+    }
+  },
+  {
+    $sort: {
+      usageCount: -1,
+      stockLevel: 1,
+    }
+  }
+])
 )
