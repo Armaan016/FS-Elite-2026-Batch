@@ -44,27 +44,5 @@ printjson() : JS library function to display the JSON Object data.
 */
 
 printjson(
-    db.Restaurants.aggregate([
-        {
-            $lookup: {
-                from: 'FoodItems',
-                localField: 'restaurant_id',
-                foreignField: 'restaurant_id',
-                as: 'temp'
-            }
-        },
-        {
-            $unwind: '$temp'
-        },
-        {
-            $group: {
-                _id: '$restaurant_id',
-                maxPrice: { $max: '$temp.price' },
-                restaurant_name: { $first: '$name' }
-            }
-        },
-        {
-            $sort: { _id: 1 }
-        }
-    ])
+    
 )

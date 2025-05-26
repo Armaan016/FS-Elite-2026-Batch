@@ -36,27 +36,5 @@ printjson() : JS library function to display the JSON Object data.
 */
 
 printjson(
-    db.DeliveryPersons.aggregate([
-        {
-            $lookup: {
-                from: 'Orders',
-                localField: 'delivery_person_id',
-                foreignField: 'delivery_person_id',
-                as: 'temp'
-            }
-        },
-        {
-            $unwind: '$temp'
-        },
-        {
-            $group: {
-                _id: '$delivery_person_id',
-                deliveries: { $sum: 1 },
-                delivery_person_name: { $first: '$name' }
-            }
-        },
-        {
-            $sort: { deliveries: -1 }
-        }
-    ])
+    
 )

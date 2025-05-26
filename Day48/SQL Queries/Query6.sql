@@ -54,11 +54,3 @@ Sample Output:
 use GT;
 
 -- Write your query here.
-SELECT full_name, total_spent, (CASE WHEN total_spent > 500 THEN 'High' WHEN (total_spent >= 200 AND total_spent <= 500) THEN 'Medium' ELSE 'LOW' END )
-AS spending_category
-FROM 
-(SELECT CONCAT(first_name, " ", last_name) as 'full_name', SUM(total_amount) as 'total_spent'
-FROM Customers c JOIN Orders o On o.customer_id = c.customer_id
-JOIN FoodItems f ON f.food_id = o.food_id
-WHERE status = 'Delivered'
-GROUP BY o.customer_id) AS t2

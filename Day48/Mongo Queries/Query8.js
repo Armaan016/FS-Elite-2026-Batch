@@ -21,20 +21,5 @@ printjson() : JS library function to display the JSON Object data.
 */
 
 printjson(
-    db.FoodItems.aggregate([
-        {
-            $addFields: {
-                type: { $cond: { if: '$is_veg', then: 'Vegetarian', else: 'Non-Vegetarian' } }
-            }
-        },
-        {
-            $group: {
-                _id: '$type',
-                count: { $sum: 1 }
-            }
-        },
-        {
-            $project: { _id: 0, count: 1, type: '$_id' }
-        }
-    ])
+    
 )

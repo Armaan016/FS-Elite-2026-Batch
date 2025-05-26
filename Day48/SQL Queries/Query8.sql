@@ -59,7 +59,3 @@ Sample Output:
 use GT;
 
 -- Write your query here.
-SELECT order_id, customer_name, status, CASE WHEN status = 'Delivered' THEN 'Order Completed Successfully' WHEN status = 'Preparing' THEN 'Order In Progress' 
-WHEN status = 'Pending' THEN 'Awaiting Confirmation' ELSE 'Order Cancelled' END AS order_message FROM
-(SELECT o.order_id as 'order_id', CONCAT(first_name, " ", last_name) as 'customer_name', status
-FROM Orders o JOIN Customers c ON c.customer_id = o.customer_id ) AS t1

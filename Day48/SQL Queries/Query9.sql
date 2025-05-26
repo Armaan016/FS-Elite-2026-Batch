@@ -52,5 +52,3 @@ Sample Output:
 use GT;
 
 -- Write your query here.
-SELECT name, total_quantity, CASE WHEN total_quantity >= 5 THEN 'Bestseller' ELSE 'Regular' END AS 'popularity_status' 
-FROM (SELECT name, SUM(quantity) as 'total_quantity' FROM Orders o Join FoodItems f ON f.food_id = o.food_id GROUP BY o.food_id) AS t1

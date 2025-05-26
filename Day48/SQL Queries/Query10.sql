@@ -52,5 +52,3 @@ Sample Output:
 use GT;
 
 -- Write your query here.
-SELECT email, CASE WHEN email LIKE '%gmail.com' THEN 'Gmail' WHEN email LIKE '%yahoo.com' THEN 'Yahoo' ELSE 'Other' END as 'email_provider'
-FROM Customers

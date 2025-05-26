@@ -54,6 +54,3 @@ Sample Output:
 use GT;
 
 -- Write your query here.
-SELECT food_item , price, CASE WHEN price > 150 THEN 'Expensive' ELSE 'Affordable' END AS price_category
-FROM 
-(SELECT name as 'food_item', price FROM FoodItems) AS t1
