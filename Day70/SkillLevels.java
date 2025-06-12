@@ -139,4 +139,55 @@ public class SkillLevels {
 
         return true;
     }
+
+    // private static int helper(int n, int k) {
+    //     res = 0;
+
+    //     List<int[]> combos = new ArrayList<>();
+    //     for (int i = 0; i < k; i++) {
+    //         for (int j = 0; j < k; j++) {
+    //             combos.add(new int[] { i, j });
+    //         }
+    //     }
+
+    //     backtrack(0, combos, n, new boolean[k], new boolean[k], new ArrayList<>());
+    //     return res % MOD;
+    // }
+
+    // private static void backtrack(int idx, List<int[]> combos, int n, boolean[] maths, boolean[] physics,
+    //         List<int[]> path) {
+    //     if (path.size() == n) {
+    //         res = (res + 1) % MOD;
+    //         return;
+    //     }
+
+    //     for (int i = idx; i < combos.size(); i++) {
+    //         int[] combo = combos.get(i);
+    //         int m = combo[0], p = combo[1];
+
+    //         if (maths[m] || physics[p])
+    //             continue;
+
+    //         boolean flag = true;
+    //         for (int[] c : path) {
+    //             if (Math.abs(m - c[0]) == Math.abs(p - c[1])) {
+    //                 flag = false;
+    //                 break;
+    //             }
+    //         }
+
+    //         if (!flag)
+    //             continue;
+
+    //         path.add(combo);
+    //         maths[m] = true;
+    //         physics[p] = true;
+
+    //         backtrack(i + 1, combos, n, maths, physics, path);
+
+    //         path.remove(path.size() - 1);
+    //         maths[m] = false;
+    //         physics[p] = false;
+    //     }
+    // }
 }
