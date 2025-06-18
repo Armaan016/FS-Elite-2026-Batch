@@ -161,7 +161,8 @@ class CreditReport {
     }
 
     public String toString() {
-        return "Customer: " + customer.getName() + ", Score: " + calculatedScore + ", Risk Level: " + riskLevel;
+        return "Customer: " + customer.getName() + ", Score: " + (Math.round(calculatedScore) * 10) / 10.0
+                + ", Risk Level: " + riskLevel;
     }
 }
 
