@@ -106,7 +106,7 @@ public class SpecialMatrix {
                 res[i][j] = spiral.get(index++);
             }
         }
-
+ 
         return res;
     }
 }
