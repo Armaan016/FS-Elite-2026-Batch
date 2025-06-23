@@ -23,7 +23,7 @@ public class NumberOperations {
 
     private static int memo(String s, int idx, int val, Map<String, Integer> dp) {
         if (idx == s.length() && val == 0)
-            return 1;
+            return 1; 
         if (idx == s.length())
             return 0;
 
